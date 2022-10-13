@@ -1,0 +1,20 @@
+Description: Disable one test for Node.js ≥ 12
+ Number becomes an object
+Author: Xavier Guimard <yadd@debian.org>
+Forwarded: no
+Last-Update: 2020-01-21
+
+--- a/test.js
++++ b/test.js
+@@ -63,9 +63,11 @@
+     });
+   });
+ 
++  /*ù
+   it('should return an empty object when non-object is passed', function() {
+     assert.deepEqual(extend(123), {});
+   });
++  */
+ 
+   it('should not extend non-enumerable symbols', function() {
+     if (!hasSymbol) return this.skip();

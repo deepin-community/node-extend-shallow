@@ -1,0 +1,26 @@
+Description: Patch away dependency on assign-symbols using the Symbols part of
+ the ES6 Object.assign method.
+Forwarded: not-needed
+Author: Paolo Greppi <paolo.greppi@libpf.com>
+
+Index: node-extend-shallow/index.js
+===================================================================
+--- node-extend-shallow.orig/index.js
++++ node-extend-shallow/index.js
+@@ -1,7 +1,6 @@
+ 'use strict';
+
+ var isExtendable = require('is-extendable');
+-var assignSymbols = require('assign-symbols');
+
+ module.exports = Object.assign || function(obj/*, objects*/) {
+   if (obj === null || typeof obj === 'undefined') {
+@@ -17,7 +16,7 @@ module.exports = Object.assign || functi
+     }
+     if (isObject(val)) {
+       assign(obj, val);
+-      assignSymbols(obj, val);
++      Object.assign(obj, val);
+     }
+   }
+   return obj;
